@@ -1,1 +1,1 @@
-print("hola mundo")
+print("Este es el proyecto grupal")
