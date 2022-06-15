@@ -3,6 +3,7 @@ flask_session/
 .DS_Store
 .env
 .flaskenv
+flaskenv/
 *.pyc
 *.pyo
 env/
