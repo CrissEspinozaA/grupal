@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL # import the connect
 from flask import flash
 import re
 
-class User: # crea una clase usuario
+class User: # crear una clase usuario
     def __init__(self, data): 
         self.id_usuario = data["id_usuario"]
         self.nombre = data["nombre"]
@@ -17,18 +17,21 @@ class User: # crea una clase usuario
     @staticmethod # método de validación de usuario de formulario de registro
     def validate_user(user):
         is_valid = True
-        if len(user["nombre"]) < 3:
-            flash("El nombre debe tener desde 3 caracteres", "register")
+        if len(user["nombre"]) < 2:
+            flash("El nombre debe tener desde 2 caracteres", "register")
             is_valid = False
-        if len(user["apellido"]) < 3:
-            flash("El apellido debe tener desde 3 caracteres", "register")
+        if len(user["apellido"]) < 2:
+            flash("El apellido debe tener desde 2 caracteres", "register")
+            is_valid = False
+        if len(user["apodo"]) < 2:
+            flash("El apodo debe tener desde 2 caracteres", "register")
+            is_valid = False
+        if len(user["edad"]) < 1:
+            flash("La edad debe tener solamente números y desde 1 caracter", "register")
             is_valid = False
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' # validación con regex para email
         if not re.fullmatch(regex, user["email"]):
             flash("El email no es válido", "register")
-            is_valid = False
-        if len(user["apodo"]) < 3:
-            flash("El apodo debe tener desde 3 caracteres", "register")
             is_valid = False
         if len(user["password"]) < 8:
             flash("La contraseña debe tener desde 8 caracteres", "register")
@@ -58,7 +61,7 @@ class User: # crea una clase usuario
         results = mysql.query_db(query, data)
         user = {"user.id": results}
         return user
-
+    
     @classmethod # metodo para obtener todos los usuarios de la base de datos
     def get_all_users(cls):
         query = "SELECT * FROM usuario"

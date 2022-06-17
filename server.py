@@ -1,4 +1,4 @@
-from flask_app.controllers import routes_app
+from flask_app.controllers import routes
 from flask_app import app
 from flask import session
 from flask_socketio import SocketIO, join_room, leave_room, emit
@@ -27,7 +27,3 @@ def left(message):
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
-
-
-
-
