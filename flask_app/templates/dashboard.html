@@ -9,10 +9,9 @@
 </head>
 <body>
 
-
     <main>
         <h1 class="texto_base">Bienvenido {{session ['usuario.nombre']}}!</h1>
-    
+        
         <div class='tbl-content'>
             
             <table class="table">
@@ -30,7 +29,6 @@
                         <td>{{ sala.nombre_sala }}</td>
                         <td> {{ sala.descripcion }}</td>
                         <td> {{ sala.administrador }}</td>
-
                         
                             <td>
                                 
@@ -43,11 +41,9 @@
                                 </form>
                                 
                                 <a href="borrar/{{sala.id_sala}}" class="btn2">Eliminar</a>
-    
-
                                 
                             </td>
-    
+                        
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -71,27 +67,18 @@
                         <td>{{ sala.nombre_sala }}</td>
                         <td> {{ sala.descripcion }}</td>
                         <td> {{ sala.administrador }}</td>
-
-    
-                        
                             <td>
                                 <form action=" /detalle" method="POST">
                                 <a href="detalle/{{sala.id_sala}}" class="btn1">entrar a la sala</a>
                                 </form>
-                                
                                 <a href="borrar/{{sala.id_sala}}" class="btn2">Eliminar</a>
-    
-
-                                
                             </td>
-    
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
         </main>
-
     <h1>
         <form action="/crear_sala" method="POST" class="form-singin" >
             <input type="submit" value="Crear Sala" class="btn btn-dark text-warning border border-warning" />
