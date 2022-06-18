@@ -1,4 +1,3 @@
-from flask_app.controllers import routes_app
 from flask_app import app
 
 

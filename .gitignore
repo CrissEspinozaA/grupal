@@ -19,6 +19,7 @@ build/
 .idea/
 docs/_build/
 .vscode
+grupalVenv/
 
 # Coverage reports
 htmlcov/
