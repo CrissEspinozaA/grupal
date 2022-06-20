@@ -15,17 +15,7 @@ def dashboard():
     if 'user.id_usuario' in session:
         salas = Sala.muestra_salas()
         print(salas)
-        print("muestro las salas")
         return render_template('dashboard.html', salas = salas)
-    else:
-        return redirect('/')
-
-@app.route('/user') 
-def userRegister():
-    if 'user.id_usuario' in session:
-        user = User.get_all_users()
-        print(user)
-        return render_template('register.html')
     else:
         return redirect('/')
 
@@ -73,6 +63,56 @@ def login():
     session ['user.apellido'] = logged_user.apellido
     return redirect('/dashboard')
 
+@app.route('/sala/nueva', methods = ['GET', 'POST'])
+def salas(): 
+    if not 'user.id_usuario' in session:
+        print("no user logged in")
+        return redirect('/')
+    if request.method == 'GET':
+        return render_template('salas.html')
+    elif request.method == 'POST':
+        print(request.form)    
+        if not Sala.validar_sala(request.form):
+            print("sala failed")
+            return redirect('/sala/nueva')
+        data = {
+            "nombre_sala": request.form['nombre_sala'],
+            "descripcion": request.form['descripcion'],
+            "mayor_edad": request.form['mayor_edad'],
+            "id_usuario": session['user.id_usuario']
+            }
+        Sala.crear_sala(data)
+        return redirect('/dashboard')
+
+@app.route('/sala/editar/<int:id_sala>')
+def get_sala_by_id(id_sala):
+    data = {
+        'id_sala': id_sala
+    }
+    sala = Sala.get_sala_by_id_sala(data)
+    return render_template ('edit.html', sala = sala)
+
+@app.route('/sala/update', methods=['POST'])
+def update_sala():
+    Sala.update_sala(request.form)
+    return redirect('/dashboard')
+
+@app.route('/sala/<int:id_sala>')
+def show_sala(id_sala):
+    data = {
+        "id_sala" : id_sala
+    }
+    sala = Sala.get_sala_by_id_sala(data)
+    return render_template('show_sala.html', sala = sala)
+
+@app.route("/sala/eliminar/<int:id_sala>")
+def delete(id_sala):
+    data ={
+        'id_sala': id_sala
+    }
+    Sala.eliminar_sala(data)
+    return redirect("/dashboard")
+
 @app.route('/login_chat', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
@@ -95,3 +135,5 @@ def chat():
 @app.errorhandler(404) 
 def url_error(e):
     return "Página no encontrada", 404
+
+
