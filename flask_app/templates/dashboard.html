@@ -10,47 +10,6 @@
 <body>
 
     <main>
-<<<<<<< HEAD
-        <h1 class="texto_base">Bienvenido {{session ['user.nombre']}}!</h1>
-
-        
-        <div class='tbl-content'>
-            
-            <table class="table">
-                <h2>Mis Salas</h2>
-                <thead class="tbl_header">
-                    
-                    <td>sala</td>
-                    <td>descripción</td>
-                    <td>administrador</td>
-                    <td class="opciones">Opciones</td>
-            </thead>
-                <tbody>
-                    {% for sala in salas %}
-                    <tr>
-                        <td>{{ sala.nombre_sala }}</td>
-                        <td> {{ sala.descripcion }}</td>
-                        <td> {{ sala.administrador }}</td>
-                        
-                            <td>
-                                
-                                <form class="form-signin" action="{{ url_for('chat') }}" method="POST">
-                                    <input value={{ session["user.nombre"] }} type="hidden" id="username" name="username" class="form-control" placeholder="Nombre de usuario" required
-                                        ><br>
-                                    
-                                    <input type="hidden" value="{{ sala.nombre_sala }}" name="room" >
-                                    <button class="btn btn-lg btn-primary btn-block" value="submit">Conectar a la sala</button>
-                                </form>
-                                
-                                <a href="borrar/{{sala.id_sala}}" class="btn2">Eliminar</a>
-                                
-                            </td>
-                        
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-=======
         <h1 class="maincontainer">Bienvenido {{session ['user.nombre']}}!</h1>
         <h2> Tu User ID: {{ session ['user.id_usuario'] }}</h2> 
         <div> <!-- class="btn-group mr-4" -->
@@ -60,7 +19,6 @@
             <form action="/logout" method="POST">
                 <input type="submit" value="Logout"/>
             </form>
->>>>>>> 3093f2323a58e694aa06456e318d7ca6dcde856b
         </div>
 
         <div class='tbl-content'>

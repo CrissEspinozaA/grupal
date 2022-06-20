@@ -19,6 +19,10 @@ def dashboard():
     else:
         return redirect('/')
 
+@app.route('/user') 
+def userRegister():
+    return render_template('register.html')
+
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
@@ -63,9 +67,6 @@ def login():
     session ['user.apellido'] = logged_user.apellido
     return redirect('/dashboard')
 
-<<<<<<< HEAD
-
-=======
 @app.route('/sala/nueva', methods = ['GET', 'POST'])
 def salas(): 
     if not 'user.id_usuario' in session:
@@ -115,7 +116,6 @@ def delete(id_sala):
     }
     Sala.eliminar_sala(data)
     return redirect("/dashboard")
->>>>>>> 3093f2323a58e694aa06456e318d7ca6dcde856b
 
 @app.route('/login_chat', methods=['GET', 'POST'])
 def index():
@@ -140,7 +140,3 @@ def chat():
 def url_error(e):
     return "Página no encontrada", 404
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3093f2323a58e694aa06456e318d7ca6dcde856b
