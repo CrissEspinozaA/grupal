@@ -73,10 +73,10 @@ class User: # crear una clase usuario
             return users
     
     @classmethod # método para obtener un usuario por su id
-    def get_user_by_id(cls, id):
-        query = "SELECT * FROM usuario WHERE id = %(id)s"
+    def get_user_by_id(cls, id_usuario):
+        query = "SELECT * FROM usuario WHERE id = %(id_usuario)s"
         data = {
-            'id': id
+            'id_usuario': id_usuario
         }
         mysql = connectToMySQL("grupal")
         results = mysql.query_db(query, data)
