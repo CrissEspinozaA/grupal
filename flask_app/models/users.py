@@ -82,7 +82,7 @@ class User: # crear una clase usuario
         results = mysql.query_db(query, data)
         return cls(results[0])
     
-    @classmethod
+    @classmethod # método para obtener un usuario por su email
     def get_user_by_email(cls, data):
         query = "SELECT * FROM usuario WHERE email = %(email)s"
         mysql = connectToMySQL("grupal")

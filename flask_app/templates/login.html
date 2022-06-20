@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/mr-pixel" type="text/css"/> 
+        
+        <title>Login</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
-    <title>Aplicacion</title>
-</head>
+    <body>
+        <form class= "loginn" action="/login" method="POST">
+            
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+            {% if messages %}
+            <div class="alert alert-warning" role="alert">
+                <strong>Información Incorrecta</strong>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
 
-<body>
+        <main class="maincontainer">
+            <div class="login">
+                <img class="imglogin" src= "static/img/logo.png">
+                    <div class="input2">
+                        <label for="email">Email:</label>
+                        <input   class="input2" type="email" name="email" class="form-control" placeholder="Correo Electrónico"/>
+                    </div>
+                    <div class="input2">
+                        <label for="password">Contraseña:</label>
+                        <input  class="input2" type="password" name="password" class="form-control" placeholder="Contraseña"/>
+                    </div>
+                    <input type="submit" value="Login" class="btn2" />
+                </form>
 
-    <form class= "login" action="/login" method="POST">
-        <h2 class="text-warning">Login</h2>
-        {% with messages = get_flashed_messages(category_filter=['login']) %}
-        {% if messages %}
-        <div class="alert alert-warning" role="alert">
-            <strong>Información Incorrecta</strong>
-            {% for message in messages %}
-            <p>{{message}}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% endwith %}
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" name="email" class="form-control" placeholder="Correo Electrónico" />
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" name="password" class="form-control" placeholder="Contraseña" />
-        </div>
-        <input type="submit" value="Login" class="btn btn-dark text-warning border border-warning" />
-    </form>
-    <div class="btn-group mr-4">
-        <form action="/user">
-            <input type="submit" value="Registro" class="btn btn-dark text-info border border-info" />
-        </form>
-    </div>
+                <form action="/user">
+                    <input type="submit" value="Registro" class="btn btn-dark text-info border border-info" />
+                </form>
+            </div>
+            
+        </main>
 
-</body>
-
+    </body>
 </html>
+
