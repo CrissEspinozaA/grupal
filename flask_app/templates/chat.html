@@ -6,6 +6,7 @@
     <!--Link to CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/mr-pixel" type="text/css"/> 
     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-3.6.0.min.js') }}"></script> <!-- Fuente: https://jquery.com/ -->
     <script type="text/javascript" src="{{ url_for('static',filename='js/socket.io.min.js') }}"></script> <!-- Fuente: https://cdnjs.com/libraries/socket.io -->
     <script type="text/javascript" charset="utf-8">
@@ -34,7 +35,7 @@
             socket.emit('left', {}, function () {
                 socket.disconnect();
                 // go back to the login page
-                window.location.href = "{{ url_for('index') }}";
+                window.location.href = "{{ url_for('dashboard') }}";
             });
         }
     </script>
@@ -43,12 +44,32 @@
 <body class="text-center">
 
     <div class="chatwindow">
-        <h2>Chat</h2>
-        <h2>Sala : {{session['room']}}</h2><br>
+        
+        <h2 class="chatname">Chat</h2>
+        <h2 class="chatname">Sala : {{session['room']}}</h2><br>
+
+        <div class="ventana_chat">
         <textarea id="chat" cols="70" rows="10" placeholder="Aún no hay mensajes. empezar uno..."></textarea><br /><br />
         <input type="text" id="text" size="60" placeholder="Introduzca su mensaje aquí" />
         <button type="button" id="send" class="btn btn-success">ENVIAR</button><br /><br />
         <center><button type="button" class="btn btn-danger" onclick=leave_room()>Dejar este Chat</button></center>
+        </div>
+        <div class="ventana_usuarios">
+            <div class="contenido_ventana"></div>
+            <h3>Administrador</h3>
+            <br>
+            <h4> - {{session ['user.nombre']}}</h4>
+            <br>
+            <br>
+            <h3>Mis Redes </h3>
+            <br>
+            <a href="https://discord.gg/8S38Fp3K" target="_blank" rel="noopener noreferrer"><img class="discord" src="static/img/discord-logo-0.png" alt="discord" > </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><img class="discord" src="static/img/png-transparent-youtube-computer-icons-logo-youtube-angle-social-media-share-icon.png" alt="youtube" ></a>
+            <a href="https://twitch.tv"  target="_blank" rel="noopener noreferrer"><img class="discord" src="static/img/35973d949f596702ab7020bfbae9ac68.png" alt="Twitch"> </a>
+            </div>
+    </div>
+    <div class="chatwindow2">
+
     </div>
 </body>
 

@@ -73,6 +73,8 @@ def login():
     session ['user.apellido'] = logged_user.apellido
     return redirect('/dashboard')
 
+
+
 @app.route('/login_chat', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
@@ -95,3 +97,4 @@ def chat():
 @app.errorhandler(404) 
 def url_error(e):
     return "Página no encontrada", 404
+
